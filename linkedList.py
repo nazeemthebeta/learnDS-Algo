@@ -1,6 +1,3 @@
-from hashlib import new
-
-
 class Node:
     def __init__(self, value):
         self.value = value
@@ -72,11 +69,20 @@ class linkedList:
         currentNode = self.get(index)
         if currentNode is not None:
             currentNode.value = value
-        else:
-            newNode = Node(value)
-            self.head = newNode
-            self.tail = newNode
-        return True
+            return True
+        return False
+    
+    def insert(self, index, value):
+        newNode = Node(value)
+        if self.length <= index or index < 0:
+            return None
+        currentNode = self.head
+        for _ in range(index-1):
+            currentNode = currentNode.next
+        previousNextNode = currentNode.next
+        currentNode.next = newNode
+        newNode.next = previousNextNode
+
 
 
 
@@ -84,4 +90,6 @@ first = linkedList(10)
 first.append(15)
 first.append(20)
 first.prepend(5)
+
+first.insert(1,12)
 first.printList()
