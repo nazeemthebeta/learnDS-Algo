@@ -87,6 +87,34 @@ class linkedList:
         self.length += 1
         return True
 
+    def remove(self, index):
+        if self.length <= index or index < 0:
+            return False
+        elif index == 0:
+            return self.popFirst()
+        elif index == self.length - 1:
+            return self.pop()
+        previousNode = self.get(index-1)
+        currentNode = previousNode.next
+        previousNode.next = currentNode.next
+        self.length -= 1
+        return currentNode
+
+    def reverse(self):
+        nodeSwitcher = self.head
+        self.head = self.tail
+        self.tail = nodeSwitcher
+        afterNode = nodeSwitcher.next
+        previousNode = None
+        for _ in range(self.length):
+            afterNode = nodeSwitcher.next
+            nodeSwitcher.next = previousNode
+            previousNode = nodeSwitcher
+            nodeSwitcher = afterNode
+
+
+
+
 
 
 
@@ -94,6 +122,5 @@ first = linkedList(10)
 first.append(15)
 first.append(20)
 first.prepend(5)
-
-first.insert(1,12)
+first.reverse()
 first.printList()
