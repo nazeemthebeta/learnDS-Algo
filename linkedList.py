@@ -73,15 +73,19 @@ class linkedList:
         return False
     
     def insert(self, index, value):
+        if self.length < index or index < 0:
+            return False
+        elif index == 0:
+            return self.prepend(value)
+        elif index == self.length:
+            return self.append(value)
         newNode = Node(value)
-        if self.length <= index or index < 0:
-            return None
-        currentNode = self.head
-        for _ in range(index-1):
-            currentNode = currentNode.next
-        previousNextNode = currentNode.next
+        currentNode = self.get(index-1)
+        nextNode = currentNode.next
         currentNode.next = newNode
-        newNode.next = previousNextNode
+        newNode.next = nextNode
+        self.length += 1
+        return True
 
 
 
