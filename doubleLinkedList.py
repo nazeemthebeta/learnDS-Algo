@@ -4,7 +4,7 @@ class Node:
         self.next = None
         self.prev = None
 
-class linkedList:
+class doubleLinkedList:
     def __init__(self, value):
         newNode = Node(value)
         self.head = newNode
@@ -28,3 +28,20 @@ class linkedList:
             self.tail = self.tail.next            
         self.length += 1
     
+    def pop(self):
+        if self.length == 0:
+            return None
+        oldTail = self.tail
+        self.tail = oldTail.pre
+        oldTail.prev = None
+
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+        return oldTail
+    
+
+firstDoubleLinkedList = doubleLinkedList(10)
+firstDoubleLinkedList.append(15)
+firstDoubleLinkedList.append(20)
+firstDoubleLinkedList.printList()
