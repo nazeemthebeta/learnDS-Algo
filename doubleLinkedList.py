@@ -32,16 +32,20 @@ class doubleLinkedList:
         if self.length == 0:
             return None
         oldTail = self.tail
-        self.tail = oldTail.pre
-        oldTail.prev = None
-
-        self.length -= 1
-        if self.length == 0:
+        if self.length == 1:
             self.head = None
+            self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            oldTail.prev = None
+        self.length -= 1
         return oldTail
     
 
 firstDoubleLinkedList = doubleLinkedList(10)
 firstDoubleLinkedList.append(15)
 firstDoubleLinkedList.append(20)
+firstDoubleLinkedList.pop()
 firstDoubleLinkedList.printList()
+
