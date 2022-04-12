@@ -56,6 +56,7 @@ class linkedList:
         previousHead = self.head
         self.head = self.head.next
         previousHead.next = None
+        self.length -= 1
         return previousHead
 
     def get(self, index):
