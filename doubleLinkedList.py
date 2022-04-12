@@ -54,17 +54,43 @@ class doubleLinkedList:
         self.length += 1
 
     def popFirst (self):
-        previousHead = self.head
-        self.head = self.head.next
-        previousHead.next = None
-        self.head.prev = None
-        return previousHead    
+        if self.length == 0:
+            return None
+        oldHead = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            oldHead.next = None
+        self.length -= 1
+        return oldHead 
+
+    def get(self, index):
+        if self.length <= index or index < 0:
+            return None
+        currentNode = self.head
+        if index <= self.length/2:
+            for _ in range(index):
+                currentNode = currentNode.next
+        else:
+            currentNode = self.tail
+            for _ in range(self.length-1, index, -1):
+                currentNode = currentNode.prev
+        return currentNode.value
+    
+    def setValue(self, index, value):
+        currentNode = self.get(index)
+        if currentNode is not None:
+            currentNode.value = value
+            return True
+        return False
 
 firstDoubleLinkedList = doubleLinkedList(10)
 firstDoubleLinkedList.append(15)
 firstDoubleLinkedList.append(20)
 firstDoubleLinkedList.prepend(5)
 firstDoubleLinkedList.prepend(0)
-firstDoubleLinkedList.popFirst()
-firstDoubleLinkedList.printList()
 
+print(firstDoubleLinkedList.get(4))

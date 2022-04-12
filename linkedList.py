@@ -53,11 +53,17 @@ class linkedList:
         self.length += 1
 
     def popFirst (self):
-        previousHead = self.head
-        self.head = self.head.next
-        previousHead.next = None
+        if self.length == 0:
+            return None
+        oldHead = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            oldHead.next = None
         self.length -= 1
-        return previousHead
+        return oldHead
 
     def get(self, index):
         if self.length <= index or index < 0:
@@ -124,5 +130,5 @@ first = linkedList(10)
 first.append(15)
 first.append(20)
 first.prepend(5)
-first.reverse()
+first.popFirst()
 first.printList()
