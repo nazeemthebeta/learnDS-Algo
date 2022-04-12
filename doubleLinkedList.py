@@ -41,11 +41,30 @@ class doubleLinkedList:
             oldTail.prev = None
         self.length -= 1
         return oldTail
-    
+
+    def prepend(self,value):
+        newNode = Node(value)
+        if self.length == 0:
+            self.head = newNode
+            self.tail = newNode
+        else:
+            newNode.next = self.head
+            self.head.prev = newNode
+            self.head = newNode
+        self.length += 1
+
+    def popFirst (self):
+        previousHead = self.head
+        self.head = self.head.next
+        previousHead.next = None
+        self.head.prev = None
+        return previousHead    
 
 firstDoubleLinkedList = doubleLinkedList(10)
 firstDoubleLinkedList.append(15)
 firstDoubleLinkedList.append(20)
-firstDoubleLinkedList.pop()
+firstDoubleLinkedList.prepend(5)
+firstDoubleLinkedList.prepend(0)
+firstDoubleLinkedList.popFirst()
 firstDoubleLinkedList.printList()
 

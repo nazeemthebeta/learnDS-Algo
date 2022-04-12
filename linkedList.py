@@ -55,7 +55,8 @@ class linkedList:
     def popFirst (self):
         previousHead = self.head
         self.head = self.head.next
-        return previousHead.value
+        previousHead.next = None
+        return previousHead
 
     def get(self, index):
         if self.length <= index or index < 0:
