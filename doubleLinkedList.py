@@ -92,5 +92,4 @@ firstDoubleLinkedList.append(15)
 firstDoubleLinkedList.append(20)
 firstDoubleLinkedList.prepend(5)
 firstDoubleLinkedList.prepend(0)
-
 print(firstDoubleLinkedList.get(4))

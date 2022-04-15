@@ -120,12 +120,6 @@ class linkedList:
             previousNode = nodeSwitcher
             nodeSwitcher = afterNode
 
-
-
-
-
-
-
 first = linkedList(10)
 first.append(15)
 first.append(20)
